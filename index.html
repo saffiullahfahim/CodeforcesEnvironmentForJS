@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/png" sizes="32x32" href="//codeforces.org/s/59256/favicon-32x32.png">
+		<link rel="stylesheet" href="./css/main.css">
+		<title>Codeforces Environment JS</title>
+	</head>
+	<body>
+	  <div style="display: none" id="container">
+	  
+	  <header>
+	    <h1>&nbsp;CF Environment</h1>
+	    <div onclick="OpenMenu(this)" id="menuBtn"><div></div><div></div><div></div></div>
+	    <div onclick="OpenMenu()" id="menuDiv"></div>
+	    <div id="menu">
+	    <div onclick="//window.location=''" class="menu-item"><div class="item">Progress</div></div>
+	    <div onclick="window.location='index.html'" class="menu-item"><div class="item">Environment</div></div>
+	    <div onclick="//window.location='status.html'" class="menu-item"><div class="item">Status</div></div>
+	    <div onclick="//window.location=''" class="menu-item"><div class="item">Problems</div></div>
+	    </div>
+	   </header>
+	   
+	   <div id="link">
+	      <select><option value="problem">Problem Link</option></select>
+	      <input onkeydown="if(window.event.keyCode==13){window.location='./?p='+this.value}">
+	      </div>
+	   
+	   <div id="problem">
+	   
+	   </div>
+	   
+	   <div class="editor"><div class="title">Editor</div></div>
+	   <div id="editor"><textarea oninput="//textarea(this.value.split('\n'), this)">function main(){
+  let input = read()
+}</textarea>
+	   </div>
+	   <div id="codeInput"><div class="title">Input</div>
+	   <textarea id="codeInputArea"></textarea>
+	   </div>
+	   
+	   <div id="codeOutput"><div class="title">Output</div>
+	   <textarea id="codeOutputArea" readonly></textarea>
+	   </div>
+	   
+	  <button id="test" onclick="cftest(0)" class="button">Test</button>
+	  <button id="cfsubmit" onclick="cfSubmit()" class="button">Submit</button><br>
+	  <div id="cfIOdiv"></div>
+	  <div id="runDiv"></div>
+	     <form id="CFsubmitForm"  method="post" action="https://codeforces.com/problemset/submit?csrf_token=22c8102fa94e45fa47e2eb95e8fa088e" enctype="multipart/form-data">
+	       <input type='hidden' name='csrf_token' value="22c8102fa94e45fa47e2eb95e8fa088e04"/>
+	       <input type="hidden" name="ftaa" value="cb8x3cra257z838h89"/>
+	       <input type="hidden" name="bfaa" value="174ae199582819e8748fbdfed87b880e"/>
+	       <input type="hidden" name="action" value="submitSolutionFormSubmitted"/>
+	       <input type="hidden" name="submittedProblemCode" value=""/>
+	       <input type="hidden" name="programTypeId" value="55"/>
+	       <textarea style="display: none" name="source"></textarea>
+	       <input type="hidden" name="tabSize" value="4"/>
+	       <input name="sourceFile" style="display: none;" type="file" value=""/>
+	     </form>
+	   <footer>Created by Co-ordinate Technologies</footer>
+	 </div>
+		<div id="loader" style="display:" class="loader-div"><div><div></div></div></div>
+	</body>
+
+<script type="text/javascript" src="js/main.js"></script>
+
+</html>

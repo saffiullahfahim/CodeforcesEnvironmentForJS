@@ -1,0 +1,303 @@
+body{
+	margin: 0;
+	font-family: ;
+	width: 100%;
+	min-height: 100%;
+}
+
+h1{
+	color: #fff;
+	background: #000;
+	text-align: center;
+	padding: 13px 0 10px;
+	font: 700 30px Monospace;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+#menuBtn{
+	position: absolute;
+	background: ;
+	width: max-content;
+	left: 15px;
+	top: 12.5px;
+	cursor: pointer;
+	border: 1px solid #999;
+}
+	
+#menuBtn div{
+	width: 30px;
+	height: 4px;
+	margin: 5px;
+	background: #fff;
+}
+	
+#menu{
+	position: absolute;
+	width: 250px;
+	display: flex;
+	flex-direction: column;
+	top: 58px;
+	bottom: 0;
+	left: -300px;
+	border-right: 2px solid #000;
+	background: #eee;
+	transition: all 0.5s;
+	z-index: 999999999;
+}
+	
+#menuDiv{
+	position: fixed;
+	top: 65px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: none;
+}
+	
+#menu .menu-item{
+	display: flex;
+	flex-direction: row;
+	margin-top: ;
+	border-bottom: 1px solid #ccc;
+	cursor: pointer;
+}
+	
+.menu-item .item{
+	font: 700 15px Monospace;
+	color: #555;
+	padding: 5px;
+	margin-left: 10px;
+}
+
+#link select{
+   width: 130px;
+   outline: none;
+   padding: 5px;
+   border: 1px solid #ddd;
+   margin-left: 10px;
+   margin-top: 10px;
+   background: #fff;
+}
+
+#link select:focus{
+   border-color: #000;
+}
+
+#link input{
+   width: calc(100% - 174px);
+   outline: none;
+   padding: 5px;
+   border: 1px solid #ddd;
+   margin-left: 0;
+   margin-top: 10px;
+   background: #fff;
+}
+
+#link input:focus{
+   border-color: #000;
+}
+
+#problem{
+margin: 10px;
+padding: 5px;
+font-size: 17px;
+overflow: auto;
+}
+
+#problem p{
+margin-bottom: 10px;
+}
+
+#problem .header{
+text-align: center;
+font-size: 13px;
+margin-bottom: 30px;
+}
+
+.header .title{
+font: 700 20px monospace;
+margin-bottom: 10px;
+}
+
+.header .time-limit, .memory-limit, .input-file, .output-file{
+display: flex;
+flex-direction: row;
+justify-content: center;
+margin: 5px;
+}
+
+.property-title::after{
+content: ':';
+}
+
+.input-specification .section-title{
+font: 700 17px monospace;
+margin-top: 30px;
+text-align: left;
+margin-bottom: -10px;
+}
+
+.output-specification .section-title{
+font: 700 17px monospace;
+margin-top: 30px;
+text-align: left;
+margin-bottom: -10px;
+}
+
+.sample-tests .section-title{
+font: 700 17px monospace;
+margin-top: 30px;
+text-align: left;
+margin-bottom: -10px;
+}
+
+.note .section-title{
+font: 700 17px monospace;
+margin-top: 30px;
+text-align: left;
+margin-bottom: -10px;
+}
+
+.sample-test{
+margin-bottom: 10px;
+margin-top: 30px;
+border-left: 2px solid #ddd;
+border-right: 2px solid #ddd;
+border-bottom: 2px solid #ddd;
+}
+
+.input, .output{
+
+}
+
+.input .title{
+font: 700 14px monospace;
+padding: 5px;
+border: 2px solid #ddd;
+border-left: none;
+border-right: none
+}
+
+.input pre{
+color: #777;
+max-width: 100%;
+overflow: auto
+}
+
+.output .title{
+font: 700 14px monospace;
+padding: 5px;
+border: 2px solid #ddd;
+border-left: none;
+border-right: none
+}
+
+.output pre{
+color: #777;
+max-width: 100%;
+overflow: auto
+}
+
+#editor{
+margin: 15px;
+border: 1px solid #000;
+padding: 5px;
+overflow: auto;
+}
+
+#editor textarea{
+height: 500px;
+font-family: ;
+outline: none;
+border: none;
+font-size: 16px;
+width: 500%
+}
+
+#codeInput, #codeOutput, .editor{
+margin: 15px;
+}
+
+#codeInput .title, #codeOutput .title, .editor .title{
+font: 700 15px Monospace;
+margin-bottom: 5px;
+}
+
+#codeInput textarea, #codeOutput textarea{
+width: calc(100% - 2px);
+height: 150px;
+outline: none;
+}
+
+.button{
+font: 700 16px Monospace;
+color: #000;
+background: #fff;
+border: 1px solid #000;
+padding: 5px;
+margin-right: 10px;
+float: right;
+margin-bottom: 10px;
+transition: all 0.3s;
+display: none;
+}
+
+.button:active{
+color: #fff;
+background: #000;
+}
+
+footer{
+	font: 700 9px Monospace;
+	color: #ccc;
+	text-align: center;
+	padding: 10px;
+	margin-top: 20px;
+	text-decoration: none;
+	}
+
+.loader-div {
+    user-select: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 150px;
+	height: 150px;
+	border: 2px solid #000;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	animation: loader-div-loading 2s linear infinite;
+}
+
+@keyframes loader-div-loading {
+	0% {
+		transform: translate(-50%, -50%) rotate(0deg);
+	}
+
+	100% {
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
+}
+
+.loader-div div {
+	border: 20px solid #000;
+	border-top-color: white;
+	border-left-color: white;
+	border-radius: 50%;
+	width: 108px;
+	height: 108px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.loader-div div div {
+	width: 102px;
+	height: 102px;
+	border: 2px solid #000;
+	border-radius: 50%;
+}
