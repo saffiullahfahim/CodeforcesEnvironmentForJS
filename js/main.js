@@ -1,3 +1,26 @@
+let stdio = `"use strict";
+process.stdin.resume();
+process.stdin.setEncoding("utf-8");
+function print(x){
+   console.log(x);
+}
+let inputString = "";
+let currentLine = 0;
+process.stdin.on("data", (inputStdin) => {
+  inputString += inputStdin;
+});
+process.stdin.on("end", () => {
+  inputString = inputString.split("\\n");
+  main();
+});
+function read() {
+   return inputString[currentLine++].replace('\\r','');
+}
+
+
+
+`
+
 function GetURLParameter(parameter){
 var data = ''
 var url = window.location.toString()
@@ -34,7 +57,7 @@ let menuBtnStatus = true;
 if(GetURLParameter('p')!=''){
 
 var form = new FormData();
-    form.append("url", GetURLParameter('p'));
+    form.append('p', GetURLParameter('p').replace(/https:\/\/codeforces.com\//,'').replace('contest/','').replace('problemset/','').replace('problem/',''));
     var url = "php/content.php";
     fetch(url,{
       method: "POST",
@@ -47,16 +70,22 @@ var form = new FormData();
     .then(res => res.text())
     .then(text => {
     //console.log(text)
-problem.innerHTML = text.replace(/<meta/g,'<').replace(/<!DOCTYPE/, '<').replace(/<html/,'<').replace('<body','<')
+problem.innerHTML = text;
 problem.innerHTML = document.getElementsByClassName("problem-statement")[0].innerHTML
 container.style.display = "block";
 loader.style.display = "none";
 let pc = document.createElement('div');
 pc.setAttribute('style','margin: 20px 10px; font: 700 15px Monospace; border-left: 5px solid #000; background: #eee; color: 555; padding: 5px; width: 120px;');
-pc.innerText = 'CF-'+GetURLParameter('p').replace(/https:\/\/codeforces.com\//,'').replace('contest/','').replace('problem/','').replace('/','');
-CFsubmitForm['submittedProblemCode'].value = GetURLParameter('p').replace(/https:\/\/codeforces.com\//,'').replace('contest/','').replace('problem/','').replace('/','');
+pc.innerText = 'CF-'+GetURLParameter('p').replace(/https:\/\/codeforces.com\//,'').replace('contest/','').replace('problem/','').replace(/\//g,'').replace('problemset','');
 link.appendChild(pc)
 test.style.display='inline';
+
+    let code = 'CF-'+GetURLParameter('p').replace(/https:\/\/codeforces.com\//,'').replace('contest/','').replace('problem/','').replace(/\//g,'').replace('problemset','');
+    fetch('problems/'+code+'/'+code+'.js')
+    .then(res => res.text())
+    .then(text => {
+      editor.childNodes[0].value = text.replace(stdio, '');
+    }).catch(err => {console.log(err)})
 
 MathJax = {
 options: {enableMenu: false,},
@@ -68,7 +97,7 @@ js.src = "../mathjax/es5/tex-svg.js"
 container.appendChild(js)
 })
 .catch(err=>{
-alert(err)
+console.log(err);
 }
 );
 }
@@ -76,24 +105,6 @@ else{
 container.style.display = "block";
 loader.style.display = "none"
 }
-
-function textarea(data, area){
-  let arr = []
-  for(let k=0; k<data.length; k++){
-  if(data[k]!==""){
-  arr.push(data[k].length)
-  }
-  }
-  arr.sort(function(a, b){return b-a})
-  cols = arr[0]
-  if(cols>30){
-  area.cols = cols
-  }
-  else{
-  area.cols = 30
-  }
-}
-
 
 function cftest(i){
 if(i<=document.getElementsByClassName("input").length-1){
@@ -105,9 +116,9 @@ if(i<=document.getElementsByClassName("input").length-1){
   let again = true;
   if(CFoutput.length===Uoutput.length){
     for(let i=0; i<CFoutput.length; i++){
-     console.log(again)
       if(CFoutput[i]!==Uoutput[i]){
         console.log(i + " line "+CFoutput[i]+" != "+Uoutput[i]);
+        alert(i + " line "+CFoutput[i]+" != "+Uoutput[i]);
         again = false;
         break;
       }
@@ -117,6 +128,7 @@ if(i<=document.getElementsByClassName("input").length-1){
   else{
   console.log(again)
     console.log('length : WA');
+    alert(('length : WA'))
     again = false;
   }
   if(again) cftest(i+1);
@@ -131,6 +143,24 @@ else{
 }
 
 function run(){
+let code = 'CF-'+GetURLParameter('p').replace(/https:\/\/codeforces.com\//,'').replace('contest/','').replace('problem/','').replace(/\//g,'').replace('problemset','');
+let form = new FormData();
+    form.append('p', '../problems/'+code+'/'+code+'.js');
+    form.append('data', stdio + editor.childNodes[0].value);
+    let url = "php/solution.php";
+    fetch(url,{
+      method: "POST",
+      mode: "no-cors",
+      header:{
+      'Content-Type': 'application/json'
+      },
+      body:  form
+    })
+    .then(res => res.text())
+    .then(text => {
+        console.log(text);
+    }).catch(err => console.log(err))
+    
   codeOutputArea.value= '';
   let io = `line=0
   function read(){
@@ -150,34 +180,8 @@ function run(){
   main();
 }
 
-function cfSubmit(){
-   let stdio = `
-   "use strict";
-   process.stdin.resume();
-   process.stdin.setEncoding("utf-8");
-   
-   function print(x) {
-   console.log(x);
-   }
-   let inputString = "";
-   let currentLine = 0;
-   
-   process.stdin.on("data", (inputStdin) => {
-   inputString += inputStdin;
-   });
-   process.stdin.on("end", () => {
-   inputString = inputString.split("\\n");
-   main();
-   });
-   function read() {
-   return inputString[currentLine++].replace('\\r','');
-   }
-   `;
-   //CFsubmitForm['source'].value = 
+function codeCopy(){
    let str = stdio + editor.childNodes[0].value;
-   //CFsubmitForm.submit();
-   CFsubmitForm['source'].select();
-   //CFsubmitForm['source'].setSelectionRange(0, 99999); 
    let el = document.createElement('textarea');
    el.value = str;
    document.body.appendChild(el);
