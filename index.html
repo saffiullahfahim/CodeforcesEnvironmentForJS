@@ -1,57 +1,81 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/png" sizes="32x32" href="//codeforces.org/s/59256/favicon-32x32.png">
-		<link rel="stylesheet" href="./css/main.css">
-		<title>Codeforces Environment JS</title>
-	</head>
-	<body>
-	  <div style="display: none" id="container">
-	  
-	  <header>
-	    <h1>&nbsp;CF Environment</h1>
-	    <div onclick="OpenMenu(this)" id="menuBtn"><div></div><div></div><div></div></div>
-	    <div onclick="OpenMenu()" id="menuDiv"></div>
-	    <div id="menu">
-	    <div onclick="//window.location=''" class="menu-item"><div class="item">Progress</div></div>
-	    <div onclick="window.location='index.html'" class="menu-item"><div class="item">Environment</div></div>
-	    <div onclick="//window.location='status.html'" class="menu-item"><div class="item">Status</div></div>
-	    <div onclick="//window.location=''" class="menu-item"><div class="item">Problems</div></div>
-	    </div>
-	   </header>
-	   
-	   <div id="link">
-	      <select><option value="problem">Problem Link</option></select>
-	      <input onkeydown="if(window.event.keyCode==13){window.location='./?p='+this.value}">
-	      </div>
-	   
-	   <div id="problem">
-	   
-	   </div>
-	   
-	   <div class="editor"><div class="title">Editor</div></div>
-	   
-	   <div id="editor"><textarea></textarea></div>
-	   
-	   <div id="codeInput"><div class="title">Input</div>
-	   <textarea id="codeInputArea"></textarea>
-	   </div>
-	   
-	   <div id="codeOutput"><div class="title">Output</div>
-	   <textarea id="codeOutputArea" readonly></textarea>
-	   </div>
-	   
-	  <button id="test" onclick="cftest(0)" class="button">Test</button>
-	  <button id="cfsubmit" onclick="codeCopy()" class="button">Copy</button><br>
-	  <div id="cfIOdiv"></div>
-	  <div id="runDiv"></div>
-	   <footer>Created by Co-ordinate Technologies</footer>
-	 </div>
-		<div id="loader" style="display:" class="loader-div"><div><div></div></div></div>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="//codeforces.org/s/59256/favicon-32x32.png"
+    />
+		<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link rel="stylesheet" href="./css/main.css" />
+    <title>Codeforces Environment JS</title>
+  </head>
+  <body>
+    <div style="display: none" id="container">
+      <header>
+        <h1>&nbsp;CF Environment</h1>
+        <div onclick="OpenMenu(this)" id="menuBtn">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div onclick="OpenMenu()" id="menuDiv"></div>
+        <div id="menu">
+          <div onclick="//window.location=''" class="menu-item">
+            <div class="item">Progress</div>
+          </div>
+          <div onclick="window.location='index.html'" class="menu-item">
+            <div class="item">Environment</div>
+          </div>
+          <div onclick="//window.location='status.html'" class="menu-item">
+            <div class="item">Status</div>
+          </div>
+          <div onclick="//window.location=''" class="menu-item">
+            <div class="item">Problems</div>
+          </div>
+        </div>
+      </header>
 
-<script type="text/javascript" src="js/main.js"></script>
+      <div id="link">
+        <select>
+          <option value="problem">Problem Link</option>
+        </select>
+        <input
+          onkeydown="if(window.event.keyCode==13){window.location='./?p='+this.value}"
+        />
+      </div>
 
+      <div id="problem"></div>
+
+      <div class="editor"><div class="title">Editor</div></div>
+
+      <div id="editor"></div>
+
+      <div id="codeInput">
+        <div class="title">Input</div>
+        <textarea id="codeInputArea"></textarea>
+      </div>
+
+      <div id="codeOutput">
+        <div class="title">Output</div>
+        <textarea id="codeOutputArea" readonly></textarea>
+      </div>
+
+      <button id="test" onclick="cftest(0)" class="button">Test</button>
+      <button id="cfsubmit" onclick="codeCopy()" class="button">Copy</button
+      ><br />
+      <div id="cfIOdiv"></div>
+      <div id="runDiv"></div>
+      <footer>Created by Co-ordinate Technologies</footer>
+    </div>
+    <div id="loader" class="loader-div">
+      <div><div></div></div>
+    </div>
+  </body>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.24.1/ace.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
 </html>
